@@ -1,0 +1,35 @@
+.description, #button {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    
+}
+
+.form-content {
+    text-align: left;
+    margin-top: 0px;
+    
+}
+
+#button {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.inputBox {
+    width:100%;
+}
+
+.form-border {
+    border: solid 2px black;
+    background-color: aliceblue;
+    margin-top: 50px;
+    padding-top: 20px;
+    width: 450px;
+    height: 350px;
+}
+
+#result {
+    width: 300px;
+    height: 10px;
+}
