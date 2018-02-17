@@ -78,7 +78,7 @@ function checkPesel(pesel)
         year += 1900;
     }
     
-    var dateOfBirth = new Date();
+    var dateOfBirth = new Date("2015-03-25");
     dateOfBirth.setFullYear(year, month, day);
      
     // Weryfikacja numery PESEL
@@ -105,7 +105,11 @@ $('#button-check').bind('click', function() {
   
     var result = checkPesel($('#pesel').val())
     $('#result').html('poprawność: ' + (result.valid ? 'OK' : 'ERROR'));
+    
+    $('#data-content').val(result.date);
     });
+
+
     
     
 
