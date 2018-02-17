@@ -3,6 +3,7 @@
 var button = document.getElementById('button');
 var nameContent = document.getElementById('name-content');
 var surnameContent = document.getElementById('surname-content');
+var dataContent = document.getElementById("data-content");
 
 //name
 button.addEventListener('click', function(e) {
@@ -48,7 +49,7 @@ button.addEventListener('click', function(e) {
 
 function checkPesel(pesel)
 {
-    //pobranie daty
+    //date
     var year     = parseInt(pesel.substring(0,2),10);
     var month = parseInt(pesel.substring(2,4),10)-1;
     var day   = parseInt(pesel.substring(4,6),10);
@@ -78,10 +79,10 @@ function checkPesel(pesel)
         year += 1900;
     }
     
-    var dateOfBirth = new Date("2015-03-25");
+    var dateOfBirth = new Date();
     dateOfBirth.setFullYear(year, month, day);
      
-    // Weryfikacja numery PESEL
+    //PESEL
     var wagi = [9,7,3,1,9,7,3,1,9,7];
     var sum = 0;
  
@@ -101,19 +102,25 @@ function checkPesel(pesel)
         date: dateOfBirth
     };
 }
-$('#button-check').bind('click', function() {
-  
-    var result = checkPesel($('#pesel').val())
-    $('#result').html('poprawność: ' + (result.valid ? 'OK' : 'ERROR'));
+
+
+
+
+$('#button-check').bind('click', function (e) { 
     
-    $('#data-content').val(result.date);
-    });
+    e.preventDefault();
 
+    var numerPesel = $("#pesel").val();
+    var resultToCheck = checkPesel(numerPesel)
 
-    
-    
+    if (resultToCheck.valid) {
+        $('#result').html('poprawność: OK');
+    } else {
+        $('#result').html('poprawność: ERROR');
+    }
 
+    dataContent.valueAsDate = resultToCheck.date;
 
-
+});
 
 
