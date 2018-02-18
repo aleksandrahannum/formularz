@@ -5,7 +5,7 @@ var nameContent = document.getElementById('name-content');
 var surnameContent = document.getElementById('surname-content');
 var dataContent = document.getElementById('data-content');
 var peselContent = document.getElementById('pesel')
-//name
+//imie
 button.addEventListener('click', function (e) {
 
     if (nameContent.value.match(/^[a-ząśżźćęółń]/i) == null) {
@@ -25,7 +25,7 @@ button.addEventListener('click', function (e) {
 });
 
 
-//surname
+//nazwisko
 
 button.addEventListener('click', function (e) {
 
@@ -48,7 +48,7 @@ button.addEventListener('click', function (e) {
 
 
 function checkPesel(pesel) {
-    //date
+    //data
     var year = parseInt(pesel.substring(0, 2), 10);
     var month = parseInt(pesel.substring(2, 4), 10) - 1;
     var day = parseInt(pesel.substring(4, 6), 10);
@@ -114,7 +114,7 @@ $('#button-check').bind('click', function (e) {
 
 button.addEventListener('click', function (e) {
 
-    if (resultToCheck.valid === false) {
+    if (resultToCheck && resultToCheck.valid === false) {
         e.preventDefault;
         peselContent.setCustomValidity('Powinieneś wpisać poprawny pesel');
     } else {
@@ -122,3 +122,38 @@ button.addEventListener('click', function (e) {
     }
 });
 
+// wyświetlenie danych
+
+function showData() {
+    var displayName = document.getElementById('name-box');
+    displayName.textContent = "Imię: " + nameContent.value;
+
+    var displaySurname = document.getElementById('surname-box');
+    displaySurname.textContent = "Nazwisko: " + surnameContent.value;
+
+    var displayPesel = document.getElementById('pesel-box');
+    displayPesel.textContent = "Pesel: " + peselContent.value;
+
+    var displayData = document.getElementById('data-box');
+    displayData.textContent = "Data urodzenia: " + dataContent.value;
+
+}
+
+button.addEventListener('click', showData);
+
+//wyświetlenie danych w konsoli z url
+
+var url_string = window.location.href; 
+var url = new URL(url_string);
+var imie = url.searchParams.get("imie");
+var surname = url.searchParams.get("surname");
+var pesel = url.searchParams.get("pesel");
+var data = url.searchParams.get("data");
+
+
+//
+
+console.log(imie);
+console.log(surname);
+console.log(pesel);
+console.log(data);
