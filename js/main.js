@@ -3,8 +3,8 @@
 var button = document.getElementById('button');
 var nameContent = document.getElementById('name-content');
 var surnameContent = document.getElementById('surname-content');
-var dataContent = document.getElementById("data-content");
-
+var dataContent = document.getElementById('data-content');
+var peselContent = document.getElementById('pesel')
 //name
 button.addEventListener('click', function (e) {
 
@@ -92,15 +92,14 @@ function checkPesel(pesel) {
     };
 }
 
-
-
+var resultToCheck;
 
 $('#button-check').bind('click', function (e) {
 
     e.preventDefault();
 
     var numerPesel = $("#pesel").val();
-    var resultToCheck = checkPesel(numerPesel)
+    resultToCheck = checkPesel(numerPesel)
 
     if (resultToCheck.valid) {
         $('#result').html('poprawność: OK');
@@ -111,3 +110,15 @@ $('#button-check').bind('click', function (e) {
     dataContent.valueAsDate = resultToCheck.date;
 
 });
+
+
+button.addEventListener('click', function (e) {
+
+    if (resultToCheck.valid === false) {
+        e.preventDefault;
+        peselContent.setCustomValidity('Powinieneś wpisać poprawny pesel');
+    } else {
+        nameContent.setCustomValidity('');
+    }
+});
+
